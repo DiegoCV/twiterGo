@@ -16,7 +16,10 @@ func Manejadores() {
 
 	router.HandleFunc("/registro", middlewares.ChequeoBD(routers.Registro)).Methods("POST")
 	router.HandleFunc("/login", middlewares.ChequeoBD(routers.Login)).Methods("POST")
-	router.HandleFunc("/verPerfil", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.Login))).Methods("GET")
+	router.HandleFunc("/verPerfil", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.VerPerfil))).Methods("GET")
+	router.HandleFunc("/modificarPerfil", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.ModificarPerfil))).Methods("PUT")
+	router.HandleFunc("/tweet", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.GraboTweet))).Methods("POST")
+	router.HandleFunc("/leoTweets", middlewares.ChequeoBD(middlewares.ValidoJWT(routers.LeoTweets))).Methods("GET")
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
